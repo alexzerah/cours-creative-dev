@@ -10,9 +10,9 @@ Vous trouverez plus d'informations sur [le site officiel](https://greensock.com/
 ## Démarrage
 
 Nous commencerons avec les fichiers suivants :
-- index.html
-- style.css
-- script.js
+- `index.html`
+- `style.css`
+- `script.js`
 
 Importer le fichier `style.css` et `script.js` dans le fichier HTML.
 
@@ -57,7 +57,7 @@ Au sein de votre fichier HTML, ajouter le code suivant :
 
 ## 👋 Comment ça fonctionne ?
 
-### Les tween
+### Les tweens
 Un tween est un objet qui contient l'ensemble des éléments pour l'animation.
 Il contient :
 - Une source : l’objet à animer
@@ -72,9 +72,9 @@ Pour l'instancier, utiliser l'objet `gsap` puis appeler les méthodes souhaitée
 * targets : element du dom, comme un ID, une classe CSS.
 * vars : 
 * */
-const tl = gsap.to(targets, vars)
+const tw1 = gsap.to(targets, vars)
 
-const tl = gsap.to("el1", {x: 100, duration: 5})
+const tw2 = gsap.to("el1", {x: 100, duration: 5})
 
 // La durée est optionelle (0,5 s par défaut). Il est possible de changer avec 
 gsap.defaults({duration: 1});
@@ -103,7 +103,7 @@ Pour avoir de bonnes performances, il faut animer avec `CSS transforms` et `opac
 ex : border-radius → borderRadius
 </aside>
 
-## .from() et fromTo()
+#### .from() et fromTo()
 
 Nous avons vu `gsap.to()` qui permet de modifier un état initial vers un état final.
 Nous pouvons faire l’inverse avec `gsap.from()`
@@ -120,6 +120,21 @@ const tween = gsap.fromTo("#element", {x: -100} ,{x: 100});
 ```
 
 👋 À quoi sert-il de mettre les deux ?
+
+### Les timelines
+
+Les timelines sont des outils de séquence qui contiennent : 
+- des tweens
+- des autres timelines
+
+Les timelines ne sont pas obligatoires mais **facilitent grandement** le travail lorsque les animations deviennent plus complexes.
+
+```javascript
+/* Déclarer une timeline
+vars (object) = configuration générale de la timeline 
+*/
+const tl = gsap.timeline(vars);
+```
 
 ## Special Properties
 
@@ -188,16 +203,16 @@ tl.to("#element", {duration: 1, x: 100});
 tl.to("#element1", {duration: 1, x: 100})
         .to("#element2", {duration: 3, y: 300})
         .to("#element3", {duration: 2, x: -100});
-// Controller le positionnement
-tl.to(..., 1.5)
-        .to(..., "-=0.75") //overlaps by 0.75 seconds
-        .to(..., "+=1") //adds a 1-second gap before
-
-// Il est possible d’ajouter des labels
-//add a label at exactly 3 seconds
-tl.addLabel("step2", 3)
-        .to(..., "step2") //starts at the step2 label
-        .to(..., "step2+=0.75") //0.75 seconds after the step2 label
+// // Controller le positionnement
+// tl.to(..., 1.5)
+//         .to(..., "-=0.75") //overlaps by 0.75 seconds
+//         .to(..., "+=1") //adds a 1-second gap before
+//
+// // Il est possible d’ajouter des labels
+// //add a label at exactly 3 seconds
+// tl.addLabel("step2", 3)
+//         .to(..., "step2") //starts at the step2 label
+//         .to(..., "step2+=0.75") //0.75 seconds after the step2 label
 
 //then later, we can seek() to that spot:
 tl.seek("step2");

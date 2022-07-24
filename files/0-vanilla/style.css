@@ -1,0 +1,17 @@
+h1 {
+    transition: 1s;
+    opacity: 0;
+    transform: translateY(100px);
+}
+
+h2 {
+    transition: 1s;
+    opacity: 0;
+    transform: translateY(100px);
+}
+
+p {
+    transition: 2s;
+    opacity: 0;
+    transform: translateY(100px);
+}
